@@ -5,15 +5,17 @@ export default function TodoList() {
       {/* list out the todos */}
       <div className={styles.todoListContent}>
         <table>
-          <tr>
-            <td>
-              <input className={styles.checkbox} type="checkbox" />
-              <label htmlFor="">Alfreds Futterkiste</label>
-              <button>
-                <i class="fa-solid fa-trash-can fa-xs"></i>
-              </button>
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <input className={styles.checkbox} type="checkbox" />
+                <label htmlFor="">Alfreds Futterkiste</label>
+                <button>
+                  <i class="fa-solid fa-trash-can fa-xs"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
       {/* footer */}
