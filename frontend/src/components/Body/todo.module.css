@@ -1,8 +1,7 @@
-.todoContainer{
+.todoContainer {
   position: relative;
-  
 }
-.heading{
+.heading {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -11,17 +10,16 @@
   font-size: 20px;
   font-weight: 700;
   color: white;
-
 }
-.heading button{
+.heading button {
   border: none;
-  background:none;
+  background: none;
   cursor: pointer;
 }
-.heading button i{
+.heading button i {
   color: white;
 }
-.todoContainer input{
+.todoContainer input {
   border: none;
   outline: none;
   border-radius: 2px;
@@ -33,4 +31,15 @@
 .todoContainer input::placeholder {
   color: rgb(173, 171, 171);
   font-size: 12px;
+}
+
+
+@media (max-width: 370px) {
+  .heading {
+    font-size: 15px;
+  }
+  .todoContainer input,
+  .todoContainer input::placeholder {
+    font-size: 10px;
+  }
 }

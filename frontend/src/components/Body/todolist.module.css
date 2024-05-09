@@ -56,8 +56,14 @@
   align-items: center;
   font-size: 10px;
   color: rgb(108, 108, 108);
+  border-top: 0.75px solid #dddddd;
 }
 .menuItems p:hover {
   color: #185ce4;
   cursor: pointer;
+}
+@media (max-width: 370px) {
+  .menuItems {
+  font-size: 8px;
+}
 }

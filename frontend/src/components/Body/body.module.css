@@ -5,4 +5,22 @@
   transform: translateX(-50%);
   top: 10px;
 }
+@media (min-width: 370px) and (max-width: 770px) {
+  .bodyContainer {
+    width: 70%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+  }
+}
 
+@media (max-width: 370px) {
+  .bodyContainer {
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+  }
+}
