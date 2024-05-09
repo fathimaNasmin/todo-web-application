@@ -1,0 +1,8 @@
+.bodyContainer {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 10px;
+}
+

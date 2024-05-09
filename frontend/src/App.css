@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(247, 247, 247);
+  font-family: arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.container {
+  background: #ad88c6;
+  height: 150px;
+}

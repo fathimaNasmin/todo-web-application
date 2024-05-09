@@ -1,0 +1,63 @@
+.todoListContainer {
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 2px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.todoListContent {
+  height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.todoListContent table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.todoListContent td {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-size: 10px;
+  color: rgb(84, 83, 83);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.todoListContent td button {
+  border: none;
+  background: none;
+  margin-left: auto;
+  width: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.todoListContent .checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.todoListContent .checkbox:checked {
+  background-color: #cb89f4;
+}
+.menuItems {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10px;
+  color: rgb(108, 108, 108);
+}
+.menuItems p:hover {
+  color: #185ce4;
+  cursor: pointer;
+}

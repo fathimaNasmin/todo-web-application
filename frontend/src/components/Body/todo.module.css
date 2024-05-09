@@ -1,0 +1,36 @@
+.todoContainer{
+  position: relative;
+  
+}
+.heading{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+
+}
+.heading button{
+  border: none;
+  background:none;
+  cursor: pointer;
+}
+.heading button i{
+  color: white;
+}
+.todoContainer input{
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 12px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.todoContainer input::placeholder {
+  color: rgb(173, 171, 171);
+  font-size: 12px;
+}
