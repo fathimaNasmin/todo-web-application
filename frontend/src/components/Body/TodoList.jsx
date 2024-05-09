@@ -1,4 +1,7 @@
 import styles from "./todolist.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 export default function TodoList() {
   return (
     <div className={styles.todoListContainer}>
@@ -9,9 +12,9 @@ export default function TodoList() {
             <tr>
               <td>
                 <input className={styles.checkbox} type="checkbox" />
-                <label htmlFor="">Alfreds Futterkiste</label>
+                <label>Alfreds Futterkiste</label>
                 <button>
-                  <i class="fa-solid fa-trash-can fa-xs"></i>
+                  <FontAwesomeIcon icon={faTrashCan} size="xs"/>
                 </button>
               </td>
             </tr>
