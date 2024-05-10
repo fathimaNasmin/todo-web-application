@@ -7,8 +7,8 @@ export default function TodoList({ todoList }) {
     <div className={styles.todoListContainer}>
       {/* list out the todos */}
       <div className={styles.todoListContent}>
-        {todoList.map((item, index) => (
-          <TodoItem key={index} item={item}/>
+        {todoList.map((item) => (
+          <TodoItem key={item.id} item={item}/>
         ))}
       </div>
       {/* footer */}

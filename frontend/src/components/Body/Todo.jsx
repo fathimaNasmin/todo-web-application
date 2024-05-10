@@ -1,13 +1,15 @@
 import styles from "./todo.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import shortid from "shortid";
+
 export default function Todo({ todo, setTodo, todoList, setTodoList }) {
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setTodoList([...todoList, todo])
-    setTodo("")
+    setTodoList([...todoList, todo]);
+    setTodo({ id: "", name: "", done: false, createdAt: new Date() });
     console.log(todoList);
-  }
+  };
   return (
     <div className={styles.todoContainer}>
       <div className={styles.heading}>
@@ -20,9 +22,14 @@ export default function Todo({ todo, setTodo, todoList, setTodoList }) {
         <input
           type="text"
           placeholder="Add new Task"
-          value={todo}
+          value={todo.name}
           onChange={(e) => {
-            setTodo(e.target.value);
+            setTodo({
+              ...todo,
+              id: shortid.generate(),
+              name: e.target.value,
+              createdAt: new Date(),
+            });
           }}
         />
       </form>
