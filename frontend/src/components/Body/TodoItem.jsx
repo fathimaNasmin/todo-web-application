@@ -1,7 +1,7 @@
 import styles from "./todoitem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import shortid from "shortid";
+import ReactTimeAgo from "react-time-ago";
 
 export default function TodoItem({ item }) {
     const day = item.createdAt.getDate();
@@ -12,7 +12,7 @@ export default function TodoItem({ item }) {
       <input className={styles.checkbox} type="checkbox" />
       <div className={styles.itemContent}>
         <label>{item.name}</label>
-        <p>created on:{day}-{month}-{year}</p>
+        <p>created on:<ReactTimeAgo date={item.createdAt} locale="en-US"/></p>
       </div>
 
       <button>

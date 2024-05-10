@@ -1,8 +1,15 @@
-import './App.css'
-import Body from './components/Body/Body'
+import "./App.css";
+import Body from "./components/Body/Body";
 import Footer from "./components/Body/Footer";
-function App() {
+import TimeAgo from "javascript-time-ago";
 
+import en from "javascript-time-ago/locale/en";
+import ru from "javascript-time-ago/locale/ru";
+
+TimeAgo.addDefaultLocale(en);
+TimeAgo.addLocale(ru);
+
+function App() {
   return (
     <>
       <div className="container">
@@ -13,4 +20,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
