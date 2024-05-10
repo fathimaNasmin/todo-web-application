@@ -1,0 +1,35 @@
+.todoItem {
+  border-bottom: 1px solid #dddddd;
+    padding: 8px;
+  font-size: 10px;
+  color: rgb(84, 83, 83);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todoItem button {
+  border: none;
+  background: none;
+  margin-left: auto;
+  width: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.todoItem .checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.todoItem .checkbox:checked {
+  background-color: #cb89f4;
+}

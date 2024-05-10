@@ -11,14 +11,9 @@
   overflow-x: hidden;
 }
 
-.todoListContent table {
-  border-collapse: collapse;
-  width: 100%;
-}
-.todoListContent td {
+.todoListContent .todoItem {
   border-bottom: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+    padding: 8px;
   font-size: 10px;
   color: rgb(84, 83, 83);
   display: flex;
@@ -26,7 +21,8 @@
   justify-content: space-between;
   align-items: center;
 }
-.todoListContent td button {
+
+.todoListContent .todoItem button {
   border: none;
   background: none;
   margin-left: auto;
@@ -35,7 +31,7 @@
   cursor: pointer;
 }
 
-.todoListContent .checkbox {
+.todoListContent .todoItem .checkbox {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -47,7 +43,7 @@
   cursor: pointer;
   margin-right: 10px;
 }
-.todoListContent .checkbox:checked {
+.todoListContent .todoItem .checkbox:checked {
   background-color: #cb89f4;
 }
 .menuItems {
@@ -64,6 +60,6 @@
 }
 @media (max-width: 370px) {
   .menuItems {
-  font-size: 8px;
-}
+    font-size: 8px;
+  }
 }

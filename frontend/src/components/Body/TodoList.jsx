@@ -1,25 +1,15 @@
 import styles from "./todolist.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-export default function TodoList({todoList}) {
+import TodoItem from './TodoItem';
+
+export default function TodoList({ todoList }) {
   return (
     <div className={styles.todoListContainer}>
       {/* list out the todos */}
       <div className={styles.todoListContent}>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <input className={styles.checkbox} type="checkbox" />
-                <label>Alfreds Futterkiste</label>
-                <button>
-                  <FontAwesomeIcon icon={faTrashCan} size="xs"/>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        {todoList.map((item, index) => (
+          <TodoItem key={index} item={item}/>
+        ))}
       </div>
       {/* footer */}
       <div className={styles.menuItems}>
