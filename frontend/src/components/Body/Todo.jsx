@@ -1,7 +1,13 @@
 import styles from "./todo.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
-export default function Todo() {
+export default function Todo({ todo, setTodo, todoList, setTodoList }) {
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    setTodoList([...todoList, todo])
+    setTodo("")
+    console.log(todoList);
+  }
   return (
     <div className={styles.todoContainer}>
       <div className={styles.heading}>
@@ -10,7 +16,16 @@ export default function Todo() {
           <FontAwesomeIcon icon={faMoon} inverse />
         </button>
       </div>
-      <input type="text" placeholder="Add new Task" />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Add new Task"
+          value={todo}
+          onChange={(e) => {
+            setTodo(e.target.value);
+          }}
+        />
+      </form>
     </div>
   );
 }

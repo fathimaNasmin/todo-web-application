@@ -2,7 +2,7 @@ import styles from "./todolist.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-export default function TodoList() {
+export default function TodoList({todoList}) {
   return (
     <div className={styles.todoListContainer}>
       {/* list out the todos */}
