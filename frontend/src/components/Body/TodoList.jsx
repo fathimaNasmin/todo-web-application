@@ -3,7 +3,13 @@ import styles from "./todolist.module.css";
 import TodoItem from "./TodoItem";
 
 export default function TodoList({ todoList, setTodoList, todo, setTodo }) {
-  const data = todoList.sort((a, b) => b.createdAt - a.createdAt);
+  const data = todoList.sort((a, b) => {
+    if(a.done !== b.done){
+      return a.done - b.done;
+    }
+    return b.createdAt - a.createdAt;
+  });
+
   return (
     <div className={styles.todoListContainer}>
       {/* list out the todos */}
