@@ -20,7 +20,12 @@ export default function Body() {
         todoList={todoList}
         setTodoList={setTodoList}
       />
-      <TodoList todoList={todoList} setTodoList={setTodoList}/>
+      <TodoList
+        todoList={todoList}
+        setTodoList={setTodoList}
+        todo={todo}
+        setTodo={setTodo}
+      />
     </div>
   );
 }

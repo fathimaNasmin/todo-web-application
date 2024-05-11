@@ -2,22 +2,59 @@ import styles from "./todoitem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ReactTimeAgo from "react-time-ago";
+import { useState } from "react";
 
-export default function TodoItem({ item, todoList, setTodoList}) {
-  const day = item.createdAt.getDate();
-  const month = item.createdAt.getMonth() + 1; // Adding 1 to get the correct month number
-  const year = item.createdAt.getFullYear();
+export default function TodoItem({
+  item,
+  todoList,
+  setTodoList,
+  todo,
+  setTodo,
+}) {
+  const [isEditing, setIsEditing] = useState(false);
 
-  function handleDelete(e) {
+  const handleDelete = (e) => {
     const id = e.currentTarget.parentNode.id;
-    const newtodoList = todoList.filter((item)=>item.id != id)
+    const newtodoList = todoList.filter((item) => item.id != id);
     setTodoList(newtodoList);
   }
+  const handleLabelClick = () => {
+    setIsEditing(true);
+  };
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setIsEditing(false);
+    }
+  };
+  const handleInputBlur = () => {
+    setIsEditing(false);
+  };
+  const handleEditTodo = (e) => {
+    const id = e.currentTarget.parentNode.parentNode.id;
+    const updatedTodoList = todoList.map((item) => {
+      if (item.id === id) {
+        return { ...item, name: e.target.value };
+      }
+      return item;
+    });
+    setTodoList(updatedTodoList);
+  };
+
   return (
     <div id={item.id} className={styles.todoItem}>
       <input className={styles.checkbox} type="checkbox" />
       <div className={styles.itemContent}>
-        <label>{item.name}</label>
+        {isEditing ? (
+          <input
+            value={item.name}
+            onChange={handleEditTodo}
+            onKeyDown={handleInputKeyDown}
+            onBlur={handleInputBlur}
+          />
+        ) : (
+          <label onClick={handleLabelClick}>{item.name}</label>
+        )}
+
         <p>
           created <ReactTimeAgo date={item.createdAt} locale="en-US" />
         </p>

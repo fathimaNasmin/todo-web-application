@@ -1,8 +1,8 @@
 import styles from "./todolist.module.css";
 
-import TodoItem from './TodoItem';
+import TodoItem from "./TodoItem";
 
-export default function TodoList({ todoList, setTodoList }) {
+export default function TodoList({ todoList, setTodoList, todo, setTodo }) {
   const data = todoList.sort((a, b) => b.createdAt - a.createdAt);
   return (
     <div className={styles.todoListContainer}>
@@ -17,6 +17,8 @@ export default function TodoList({ todoList, setTodoList }) {
               item={item}
               todoList={todoList}
               setTodoList={setTodoList}
+              todo={todo}
+              setTodo={setTodo}
             />
           ))
         )}
