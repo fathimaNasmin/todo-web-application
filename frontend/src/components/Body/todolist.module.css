@@ -46,6 +46,11 @@
 .todoListContent .todoItem .checkbox:checked {
   background-color: #cb89f4;
 }
+.todoListContent h1{
+  color: #ccc;
+  font-size: 18px;
+  text-align: center;
+}
 .menuItems {
   display: flex;
   justify-content: space-around;
