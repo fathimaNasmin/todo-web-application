@@ -8,7 +8,6 @@ export default function Todo({ todo, setTodo, todoList, setTodoList }) {
     e.preventDefault();
     setTodoList([...todoList, todo]);
     setTodo({ id: "", name: "", done: false, createdAt: new Date() });
-    console.log(todoList);
   };
   return (
     <div className={styles.todoContainer}>

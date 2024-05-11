@@ -2,8 +2,8 @@ import styles from "./todolist.module.css";
 
 import TodoItem from './TodoItem';
 
-export default function TodoList({ todoList }) {
-  const data = todoList.sort((a,b)=>b.createdAt - a.createdAt)
+export default function TodoList({ todoList, setTodoList }) {
+  const data = todoList.sort((a, b) => b.createdAt - a.createdAt);
   return (
     <div className={styles.todoListContainer}>
       {/* list out the todos */}
@@ -11,13 +11,21 @@ export default function TodoList({ todoList }) {
         {data.length <= 0 ? (
           <h1>No task</h1>
         ) : (
-          data.map((item) => <TodoItem key={item.id} item={item} />)
+          data.map((item) => (
+            <TodoItem
+              key={item.id}
+              item={item}
+              todoList={todoList}
+              setTodoList={setTodoList}
+            />
+          ))
         )}
-
       </div>
       {/* footer */}
       <div className={styles.menuItems}>
-        <p>Total:{todoList.length} {todoList.length > 1?"items": "item"}</p>
+        <p>
+          Total:{todoList.length} {todoList.length > 1 ? "items" : "item"}
+        </p>
         <p>All</p>
         <p>Active</p>
         <p>Completed</p>
