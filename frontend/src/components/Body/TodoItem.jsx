@@ -17,18 +17,8 @@ export default function TodoItem({
     const id = e.currentTarget.parentNode.id;
     const newtodoList = todoList.filter((item) => item.id != id);
     setTodoList(newtodoList);
-  }
-  const handleLabelClick = () => {
-    setIsEditing(true);
   };
-  const handleInputKeyDown = (e) => {
-    if (e.key === "Enter") {
-      setIsEditing(false);
-    }
-  };
-  const handleInputBlur = () => {
-    setIsEditing(false);
-  };
+
   const handleEditTodo = (e) => {
     const id = e.currentTarget.parentNode.parentNode.id;
     const updatedTodoList = todoList.map((item) => {
@@ -48,11 +38,19 @@ export default function TodoItem({
           <input
             value={item.name}
             onChange={handleEditTodo}
-            onKeyDown={handleInputKeyDown}
-            onBlur={handleInputBlur}
+            onKeyDown={(e) => {
+              e.key === "Enter" ? setIsEditing(false) : null;
+            }}
+            onBlur={() => setIsEditing(false)}
           />
         ) : (
-          <label onClick={handleLabelClick}>{item.name}</label>
+          <label
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            {item.name}
+          </label>
         )}
 
         <p>
