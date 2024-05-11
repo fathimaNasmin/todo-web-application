@@ -12,7 +12,7 @@ export default function TodoItem({
   setTodo,
 }) {
   const [isEditing, setIsEditing] = useState(false);
-
+  const [isChecked, setIsChecked] = useState(false); // state for checkbox
   //   useRef hook to get the div's id from DOM
   const parentNodeRef = useRef(null);
 
@@ -33,9 +33,26 @@ export default function TodoItem({
     setTodoList(updatedTodoList);
   };
 
+  const handleCheckbox = () =>{
+    const id = parentNodeRef.current.id;
+    const updatedTodoList = todoList.map((item)=>{
+        if (item.id === id){
+            return {...item, done:!item.done}
+        }
+        return item;
+    })
+    setTodoList(updatedTodoList);
+    setIsChecked(!isChecked);
+  }
+
   return (
     <div id={item.id} className={styles.todoItem} ref={parentNodeRef}>
-      <input className={styles.checkbox} type="checkbox" />
+      <input
+        className={styles.checkbox}
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleCheckbox}
+      />
       <div className={styles.itemContent}>
         {isEditing ? (
           <input
