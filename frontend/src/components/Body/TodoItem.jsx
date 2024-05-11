@@ -2,7 +2,7 @@ import styles from "./todoitem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ReactTimeAgo from "react-time-ago";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function TodoItem({
   item,
@@ -13,14 +13,17 @@ export default function TodoItem({
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
+  //   useRef hook to get the div's id from DOM
+  const parentNodeRef = useRef(null);
+
   const handleDelete = (e) => {
-    const id = e.currentTarget.parentNode.id;
+    const id = parentNodeRef.current.id;
     const newtodoList = todoList.filter((item) => item.id != id);
     setTodoList(newtodoList);
   };
 
   const handleEditTodo = (e) => {
-    const id = e.currentTarget.parentNode.parentNode.id;
+    const id = parentNodeRef.current.id;
     const updatedTodoList = todoList.map((item) => {
       if (item.id === id) {
         return { ...item, name: e.target.value };
@@ -31,7 +34,7 @@ export default function TodoItem({
   };
 
   return (
-    <div id={item.id} className={styles.todoItem}>
+    <div id={item.id} className={styles.todoItem} ref={parentNodeRef}>
       <input className={styles.checkbox} type="checkbox" />
       <div className={styles.itemContent}>
         {isEditing ? (
