@@ -31,9 +31,9 @@ export default function TodoList({ todoList, setTodoList, todo, setTodo }) {
       </div>
       {/* footer */}
       <div className={styles.menuItems}>
-        <p>
+        <label>
           Total:{todoList.length} {todoList.length > 1 ? "items" : "item"}
-        </p>
+        </label>
         <p>All</p>
         <p>Active</p>
         <p>Completed</p>
