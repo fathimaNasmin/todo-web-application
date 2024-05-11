@@ -7,9 +7,7 @@ import { useRef, useState } from "react";
 export default function TodoItem({
   item,
   todoList,
-  setTodoList,
-  todo,
-  setTodo,
+  setTodoList
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isChecked, setIsChecked] = useState(false); // state for checkbox
@@ -33,24 +31,24 @@ export default function TodoItem({
     setTodoList(updatedTodoList);
   };
 
-  const handleCheckbox = () =>{
+  const handleCheckbox = () => {
     const id = parentNodeRef.current.id;
-    const updatedTodoList = todoList.map((item)=>{
-        if (item.id === id){
-            return {...item, done:!item.done}
-        }
-        return item;
-    })
+    const updatedTodoList = todoList.map((item) => {
+      if (item.id === id) {
+        return { ...item, done: !item.done };
+      }
+      return item;
+    });
     setTodoList(updatedTodoList);
     setIsChecked(!isChecked);
-  }
+  };
 
   return (
     <div id={item.id} className={styles.todoItem} ref={parentNodeRef}>
       <input
         className={styles.checkbox}
         type="checkbox"
-        checked={isChecked}
+        checked={item.done}
         onChange={handleCheckbox}
       />
       <div className={styles.itemContent}>

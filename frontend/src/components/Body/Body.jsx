@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./body.module.css";
 import Todo from "./Todo";
 import TodoList from "./TodoList";
@@ -11,6 +11,11 @@ export default function Body() {
     createdAt: new Date(),
   });
   const [todoList, setTodoList] = useState([]);
+  const [filteredTodoList, setFilteredTodoList] = useState([]);
+
+  useEffect(() => {
+    setFilteredTodoList(todoList);
+  }, [todoList]);
 
   return (
     <div className={styles.bodyContainer}>
@@ -25,6 +30,8 @@ export default function Body() {
         setTodoList={setTodoList}
         todo={todo}
         setTodo={setTodo}
+        filteredTodoList={filteredTodoList}
+        setFilteredTodoList={setFilteredTodoList}
       />
     </div>
   );
