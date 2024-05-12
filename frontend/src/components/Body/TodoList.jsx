@@ -7,8 +7,6 @@ import { useEffect } from "react";
 export default function TodoList({
   todoList,
   setTodoList,
-  todo,
-  setTodo,
   filteredTodoList,
   setFilteredTodoList,
 }) {
