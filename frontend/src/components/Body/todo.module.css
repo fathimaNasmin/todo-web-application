@@ -42,6 +42,9 @@
   margin: 2px;
   padding: 0;
 }
+.lightIcon{
+  color: #fff;
+}
 
 @media (max-width: 370px) {
   .heading {

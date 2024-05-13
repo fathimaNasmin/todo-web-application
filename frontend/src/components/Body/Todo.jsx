@@ -1,10 +1,10 @@
 import styles from "./todo.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faMoon,faSun } from "@fortawesome/free-solid-svg-icons";
 import shortid from "shortid";
 import { useState } from "react";
 
-export default function Todo({ todo, setTodo, todoList, setTodoList }) {
+export default function Todo({ todo, setTodo, todoList, setTodoList, isDark, setIsDark }) {
   const [inputError, setInputError] = useState("");
   const validateTodoForm = () => {
     if (todo.name.length < 3) {
@@ -25,8 +25,17 @@ export default function Todo({ todo, setTodo, todoList, setTodoList }) {
     <div className={styles.todoContainer}>
       <div className={styles.heading}>
         <p>T O D O</p>
-        <button>
-          <FontAwesomeIcon icon={faMoon} inverse />
+        <button
+          onClick={() => {
+            console.log(isDark);
+            setIsDark(!isDark);
+          }}
+        >
+          {isDark ? (
+            <FontAwesomeIcon icon={faSun} className={styles.lightIcon}/>
+          ) : (
+            <FontAwesomeIcon icon={faMoon} inverse />
+          )}
         </button>
       </div>
       <form onSubmit={handleSubmit}>
@@ -44,7 +53,7 @@ export default function Todo({ todo, setTodo, todoList, setTodoList }) {
             });
           }}
         />
-        {inputError?(<p className={styles.errorTag}>{inputError}</p>):""}
+        {inputError ? <p className={styles.errorTag}>{inputError}</p> : ""}
       </form>
     </div>
   );
