@@ -1,0 +1,21 @@
+:root {
+  --background-color: rgb(247, 247, 247);
+  --background-color-box: #fff;
+  --background-color-list: #fff;
+  --text-color: rgb(80, 79, 79);
+  --footer-color: #fff;
+  --footer-p-color: rgb(48, 48, 48);
+  --footer-span-color: gray;
+  --border-bottom-color: #dddddd;
+}
+
+[data-theme="dark"] {
+  --background-color: rgb(14, 14, 14);
+  --background-color-box: rgb(46, 45, 47);
+  --background-color-list: rgb(59, 59, 59);
+  --text-color: #c8c7c7;
+  --footer-color: rgb(78, 74, 74);
+  --footer-p-color: #fff;
+  --footer-span-color: gray;
+  --border-bottom-color: #8d8c8c;
+}

@@ -1,5 +1,5 @@
 .todoItem {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 0.5px solid var(--border-bottom-color);
   padding: 8px;
   font-size: 10px;
   color: rgb(84, 83, 83);
@@ -31,13 +31,19 @@
   margin-right: 10px;
 }
 .todoItem .checkbox:checked {
-  background-color: #7469B6
+  background-color: #7469B6;
 }
 .itemContent {
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
+}
+.itemContent label{
+  color: var(--text-color);
+}
+.trashIcon{
+  color: var(--text-color);
 }
 .itemContent p {
   font-size: 7px;

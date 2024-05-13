@@ -20,6 +20,8 @@
   color: white;
 }
 .todoContainer input {
+  background-color: var(--background-color-box);
+  color: var(--text-color);
   border: none;
   outline: none;
   border-radius: 2px;

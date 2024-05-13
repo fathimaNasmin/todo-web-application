@@ -1,7 +1,7 @@
 .footer{
     width: 100%;
     height: 20px;
-    background-color: #fff;
+    background-color: var(--background-color-box);
     position: absolute;
     bottom: 0;
     display: flex;
@@ -13,8 +13,8 @@
     position: relative;
     font-size: 8px;
     text-align: center;
-    color: rgb(48, 48, 48);
+    color: var(--footer-p-color);
 }
 .footer p span{
-    color: gray;
+    color:var(--footer-span-color)
 }

@@ -9,6 +9,9 @@
   height: 220px;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: var(--background-color-box);
+border-top-left-radius: 2px;
+border-top-right-radius: 2px;
 }
 
 .todoListContent .todoItem {

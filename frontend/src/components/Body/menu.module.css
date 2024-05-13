@@ -3,8 +3,11 @@
   justify-content: space-around;
   align-items: center;
   font-size: 10px;
-  color: rgb(108, 108, 108);
-  border-top: 0.75px solid #dddddd;
+  color: var(--text-color);
+  background-color: var(--background-color-box);
+  border-top: 0.75px solid var(--border-bottom-color);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 .menuItems p:hover {
   color: #7469B6;

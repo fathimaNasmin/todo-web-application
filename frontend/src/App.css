@@ -2,12 +2,15 @@
   box-sizing: border-box;
 }
 body {
-  background-color: rgb(247, 247, 247);
   font-family: arial, sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   overflow-y: hidden;
+}
+.base{
+    background-color:var(--background-color);
+    height: 100vh;
 }
 .container {
   background: #ad88c6;
