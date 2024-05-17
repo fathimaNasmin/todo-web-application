@@ -22,31 +22,35 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   border: 1px solid #ccc;
   outline: none;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 12px;
 }
 .todoItem .checkbox:checked {
-  background-color: #7469B6;
+  background-color: #7469b6;
 }
 .itemContent {
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
+  flex: 2;
 }
-.itemContent label{
+.itemContent label {
   color: var(--text-color);
+  font-size: 18px;
 }
-.trashIcon{
+.trashIcon {
   color: var(--text-color);
+  margin-right: 10px;
+  transform: scale(1.2);
 }
 .itemContent p {
-  font-size: 7px;
+  font-size: 12px;
   margin: 2px 0px 0px 0px;
   padding: 0;
   color: rgb(158, 158, 158);
@@ -58,4 +62,41 @@
   outline: 0;
   padding: 0;
   margin: 0;
+}
+
+@media (max-width: 370px) {
+  .todoItem {
+    border-bottom: 0.5px solid var(--border-bottom-color);
+    padding: 8px;
+    font-size: 8px;
+    color: rgb(84, 83, 83);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .todoItem button {
+    border: none;
+    background: none;
+    margin-left: auto;
+    width: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .todoItem .checkbox {
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+  }
+  .itemContent label {
+    font-size: 10px;
+  }
+  .itemContent p {
+    font-size: 8px;
+  }
+  .trashIcon{
+    transform: scale(0.8);
+  }
 }

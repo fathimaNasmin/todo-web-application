@@ -11,10 +11,14 @@
   font-weight: 700;
   color: white;
 }
+.heading p {
+  font-size: 30px;
+}
 .heading button {
   border: none;
   background: none;
   cursor: pointer;
+
 }
 .heading button i {
   color: white;
@@ -24,31 +28,31 @@
   color: var(--text-color);
   border: none;
   outline: none;
-  border-radius: 2px;
+  border-radius: 4px;
   width: 100%;
-  padding: 8px 10px;
-  font-size: 12px;
+  padding: 12px 10px;
+  font-size: 18px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .todoContainer input::placeholder {
   color: rgb(173, 171, 171);
-  font-size: 12px;
+  font-size: 18px;
 }
-.errorTag{
+.errorTag {
   font-size: 9px;
-  color: #FFE6E6;
+  color: #ffe6e6;
   font-family: sans-serif;
   font-weight: bold;
   margin: 2px;
   padding: 0;
 }
-.lightIcon{
+.lightIcon {
   color: #fff;
 }
 
 @media (max-width: 370px) {
   .heading {
-    font-size: 15px;
+    font-size: 12px;
   }
   .todoContainer input,
   .todoContainer input::placeholder {

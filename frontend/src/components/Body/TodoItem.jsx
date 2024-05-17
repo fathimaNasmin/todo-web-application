@@ -77,7 +77,7 @@ export default function TodoItem({
       </div>
 
       <button onClick={handleDelete}>
-        <FontAwesomeIcon icon={faTrashCan} size="xs" className={styles.trashIcon}/>
+        <FontAwesomeIcon icon={faTrashCan} size="xs" transform="grow-7" className={styles.trashIcon}/>
       </button>
     </div>
   );
