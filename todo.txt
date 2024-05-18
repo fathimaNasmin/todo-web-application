@@ -1,3 +1,6 @@
-- Form Validation
+- Form Validation 
+- validate login  page 
 - dark : login/ signup
 - Router
+- generate auto strong password
+- send  api request using axios
