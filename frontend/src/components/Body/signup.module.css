@@ -27,6 +27,9 @@
   border-radius: 5px;
   font-size: 18px;
 }
+.signupContainer input::placeholder{
+    font-size: 18px;
+  }
 .signupContainer input:focus {
   font-size: 18px;
 }
@@ -36,28 +39,98 @@
   width: 70%;
   margin: 0px auto;
 }
-.signUpBox button{
-    border: none;
-    border-radius: 5px;
-    background-color: #8f40c4;
-    color: white;
-    font-size: 18px;
-    margin: 10px 0px;
-    padding: 10px;
+.signUpBox button {
+  border: none;
+  border-radius: 5px;
+  background-color: #8f40c4;
+  color: white;
+  font-size: 18px;
+  margin: 10px 0px;
+  padding: 10px;
 }
-.signUpBox button:hover{
-    cursor: pointer;
+.signUpBox button:hover {
+  cursor: pointer;
 }
 .signupContainer p {
-    text-align: center;
-    color: grey;
-    margin: 20px auto 30px auto;
+  text-align: center;
+  color: grey;
+  margin: 20px auto 30px auto;
 }
 
-.signupContainer p > span{
-    color: #8f40c4;
+.signupContainer p > span {
+  color: #8f40c4;
 }
-.signupContainer p > span:hover{
-    cursor: pointer;
-    color: #7e15c4;
+.signupContainer p > span:hover {
+  cursor: pointer;
+  color: #7e15c4;
+}
+
+@media (max-width: 370px) {
+  .signupContainer {
+    width: 95%;
+  }
+  .signupContainer h1 {
+    font-size: 15px;
+  }
+  .signupContainer input {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  .signupContainer input::placeholder{
+    font-size: 14px;
+  }
+  .signupContainer input:focus {
+    font-size: 14px;
+  }
+  .signUpBox {
+    width: 80%;
+  }
+  .signUpBox button {
+    font-size: 14px;
+  }
+  .signupContainer p {
+    font-size: 12px;
+  }
+
+  .signupContainer p > span {
+    font-size: 12px;
+  }
+  .signupContainer p > span:hover {
+    font-size: 12px;
+  }
+}
+
+@media (min-width:370px) and (max-width:770px) {
+    .signupContainer {
+    width: 80%;
+  }
+  .signupContainer h1 {
+    font-size: 17px;
+  }
+  .signupContainer input {
+    font-size: 16px;
+  }
+  .signupContainer input::placeholder{
+    font-size: 16px;
+  }
+  .signupContainer input:focus {
+    font-size: 16px;
+  }
+  .signUpBox {
+    width: 70%;
+  }
+  .signUpBox button {
+    font-size: 16px;
+  }
+  .signupContainer p {
+    font-size: 13px;
+  }
+
+  .signupContainer p > span {
+    font-size: 13px;
+  }
+  .signupContainer p > span:hover {
+    font-size: 13px;
+  }
 }
