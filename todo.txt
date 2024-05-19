@@ -1,5 +1,4 @@
-- validate login  page 
-- disapper the error when start editing the field
+- change color of button on click/hover on have an effect on button
 - dark : login/ signup
 - Router
 - generate auto strong password

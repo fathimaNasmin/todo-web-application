@@ -23,12 +23,14 @@ export default function Signup() {
       )
       .matches(/[0-9]/, "Password must contain at least one number")
       .matches(/[A-Z]/, "Password must contain atleast uppercase letter")
-      .matches(/[a-z]/, "Password must contain atleast one lowercase letter")
+      .matches(/[a-z]/, "Password must contain atleast one lowercase letter"),
   });
 
   // SignUp form validation
   let signUpValidationSchema = object({
-    name: string().required("Name required"),
+    name: string()
+      .required("Name required")
+      .min(6, "Name must have 6 characters"),
     email: string().email("Invalid format").required("Email required"),
     password: string()
       .required("Password required")
@@ -51,11 +53,13 @@ export default function Signup() {
       ...formData,
       [name]: value,
     });
+
+    setErrors({ ...errors, [name]: undefined });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(signState){
+    if (signState) {
       // validate signup form
       // validates name, email, password, confirm password
       try {
@@ -70,7 +74,7 @@ export default function Signup() {
         });
         setErrors(newErrors);
       }
-    }else{
+    } else {
       // validate login form
       // validates only email and password
       try {
@@ -86,13 +90,12 @@ export default function Signup() {
         setErrors(newErrors);
       }
     }
-    
   };
 
   return (
     <div className={styles.bg}>
       <div className={styles.signupContainer}>
-        <h1>{signState?"Signup":"Login"}</h1>
+        <h1>{signState ? "Signup" : "Login"}</h1>
         <form onSubmit={handleSubmit} className={styles.signUpBox}>
           {signState ? (
             <>
@@ -149,12 +152,36 @@ export default function Signup() {
         {signState ? (
           <p>
             Already have account?{" "}
-            <span onClick={() => setSignState(false)}>Login In</span>
+            <span
+              onClick={() => {
+                setSignState(false);
+                setFormData({
+                  name: "",
+                  email: "",
+                  password: "",
+                  confirmPassword: "",
+                });
+              }}
+            >
+              Login In
+            </span>
           </p>
         ) : (
           <p>
             Don't have an account?{" "}
-            <span onClick={() => setSignState(true)}>Sign Up</span>
+            <span
+              onClick={() => {
+                setSignState(true);
+                setFormData({
+                  name: "",
+                  email: "",
+                  password: "",
+                  confirmPassword: "",
+                });
+              }}
+            >
+              Sign Up
+            </span>
           </p>
         )}
       </div>
