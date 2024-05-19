@@ -1,5 +1,5 @@
-- Form Validation 
 - validate login  page 
+- disapper the error when start editing the field
 - dark : login/ signup
 - Router
 - generate auto strong password

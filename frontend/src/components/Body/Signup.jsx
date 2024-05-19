@@ -11,8 +11,23 @@ export default function Signup() {
     password: "",
     confirmPassword: "",
   });
+  // Login Form Validation
+  let loginValidationSchema = object({
+    email: string().email("Invalid format").required("Email required"),
+    password: string()
+      .required("Password required")
+      .min(8, "Password must be of 8 characters.")
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>"]/,
+        "Password must contain at least one symbol"
+      )
+      .matches(/[0-9]/, "Password must contain at least one number")
+      .matches(/[A-Z]/, "Password must contain atleast uppercase letter")
+      .matches(/[a-z]/, "Password must contain atleast one lowercase letter")
+  });
 
-  let validationSchema = object({
+  // SignUp form validation
+  let signUpValidationSchema = object({
     name: string().required("Name required"),
     email: string().email("Invalid format").required("Email required"),
     password: string()
@@ -40,35 +55,59 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await validationSchema.validate(formData, { abortEarly: false });
-      // send post request to api with name, password and email id.
-      // redirect to home page
-      console.log("form submitted", formData);
-    } catch (error) {
-      const newErrors = {};
-      error.inner.forEach((err) => {
-        newErrors[err.path] = err.message;
-      });
-      setErrors(newErrors);
+    if(signState){
+      // validate signup form
+      // validates name, email, password, confirm password
+      try {
+        await signUpValidationSchema.validate(formData, { abortEarly: false });
+        // send post request to api with name, password and email id.
+        // redirect to login page
+        console.log("form submitted", formData);
+      } catch (error) {
+        const newErrors = {};
+        error.inner.forEach((err) => {
+          newErrors[err.path] = err.message;
+        });
+        setErrors(newErrors);
+      }
+    }else{
+      // validate login form
+      // validates only email and password
+      try {
+        await loginValidationSchema.validate(formData, { abortEarly: false });
+        // send post request to api with name, password and email id.
+        // redirect to login page
+        console.log("form submitted", formData);
+      } catch (error) {
+        const newErrors = {};
+        error.inner.forEach((err) => {
+          newErrors[err.path] = err.message;
+        });
+        setErrors(newErrors);
+      }
     }
+    
   };
 
   return (
     <div className={styles.bg}>
       <div className={styles.signupContainer}>
-        <h1>Signup</h1>
+        <h1>{signState?"Signup":"Login"}</h1>
         <form onSubmit={handleSubmit} className={styles.signUpBox}>
-          <>
-            <input
-              type="text"
-              placeholder="Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-            {errors.name && <div className={styles.error}>{errors.name}</div>}
-          </>
+          {signState ? (
+            <>
+              <input
+                type="text"
+                placeholder="Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              {errors.name && <div className={styles.error}>{errors.name}</div>}
+            </>
+          ) : (
+            ""
+          )}
 
           <input
             type="text"
@@ -88,26 +127,36 @@ export default function Signup() {
           {errors.password && (
             <div className={styles.error}>{errors.password}</div>
           )}
+          {signState ? (
+            <>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
+              {errors.confirmPassword && (
+                <div className={styles.error}>{errors.confirmPassword}</div>
+              )}
+            </>
+          ) : (
+            ""
+          )}
 
-          <>
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-            {errors.confirmPassword && (
-              <div className={styles.error}>{errors.confirmPassword}</div>
-            )}
-          </>
-
-          <button>Signup</button>
+          <button>{signState ? "Signup" : "Login"}</button>
         </form>
-
-        <p>
-          Already have account? <span>Login In</span>
-        </p>
+        {signState ? (
+          <p>
+            Already have account?{" "}
+            <span onClick={() => setSignState(false)}>Login In</span>
+          </p>
+        ) : (
+          <p>
+            Don't have an account?{" "}
+            <span onClick={() => setSignState(true)}>Sign Up</span>
+          </p>
+        )}
       </div>
     </div>
   );
