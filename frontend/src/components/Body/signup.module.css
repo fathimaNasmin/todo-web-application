@@ -50,6 +50,7 @@
 }
 .signUpBox button:hover {
   cursor: pointer;
+  background-color: #7d0fc6;
 }
 .signupContainer p {
   text-align: center;
