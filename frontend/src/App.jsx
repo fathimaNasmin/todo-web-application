@@ -8,6 +8,7 @@ import ru from "javascript-time-ago/locale/ru";
 import useLocalStorage from "use-local-storage";
 import Signup from "./components/Body/Signup";
 import TodoPage from "./components/pages/TodoPage/TodoPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
@@ -16,8 +17,12 @@ function App() {
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
   return (
     <>
-      {/* <TodoPage isDark={isDark} setIsDark ={setIsDark} /> */}
-      <Signup />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Signup />} />
+          <Route path="/todopage" element={<TodoPage {...{ isDark: isDark }} />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
