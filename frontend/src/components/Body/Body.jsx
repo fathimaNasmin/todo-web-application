@@ -3,7 +3,7 @@ import styles from "./body.module.css";
 import Todo from "./Todo";
 import TodoList from "./TodoList";
 
-export default function Body({ isDark, setIsDark }) {
+export default function Body() {
   const [todo, setTodo] = useState({
     id: "",
     name: "",
@@ -12,6 +12,7 @@ export default function Body({ isDark, setIsDark }) {
   });
   const [todoList, setTodoList] = useState([]);
   const [filteredTodoList, setFilteredTodoList] = useState([]);
+
 
   useEffect(() => {
     setFilteredTodoList(todoList);
@@ -24,8 +25,6 @@ export default function Body({ isDark, setIsDark }) {
         setTodo={setTodo}
         todoList={todoList}
         setTodoList={setTodoList}
-        isDark={isDark}
-        setIsDark={setIsDark}
       />
       <TodoList
         todoList={todoList}

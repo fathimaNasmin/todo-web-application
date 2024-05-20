@@ -1,8 +1,6 @@
-- change color of button on click/hover on have an effect on button
 - dark : login/ signup
 - Router
 - generate auto strong password
-- send  api request using axios
 
 - show message " Account created"
 - after success redirect to login
@@ -11,6 +9,9 @@
 - Expected error:
     - user Already exists. | email id already exists.Try another
     - bad request: 400 | Server Error.try Again Later
+
+- if the user is loggedIn / retrieve from local storage -> todo page
+- if the user not authenticated -> signup / login 
 
 
 
