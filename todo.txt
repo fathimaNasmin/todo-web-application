@@ -3,3 +3,17 @@
 - Router
 - generate auto strong password
 - send  api request using axios
+
+- show message " Account created"
+- after success redirect to login
+- Success message
+    - Account created successfully.
+- Expected error:
+    - user Already exists. | email id already exists.Try another
+    - bad request: 400 | Server Error.try Again Later
+
+
+
+
+user 1:
+sample test 1 | sampletest1@example.com | Sampletest@1

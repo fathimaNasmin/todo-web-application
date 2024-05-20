@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./signup.module.css";
 import { object, string, ref } from "yup";
+import axiosInstance from "../../api";
+import { baseUrl } from "../../urls";
 
 export default function Signup() {
   const [signState, setSignState] = useState(true);
@@ -11,6 +13,7 @@ export default function Signup() {
     password: "",
     confirmPassword: "",
   });
+
   // Login Form Validation
   let loginValidationSchema = object({
     email: string().email("Invalid format").required("Email required"),
@@ -60,13 +63,24 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (signState) {
-      // validate signup form
-      // validates name, email, password, confirm password
       try {
         await signUpValidationSchema.validate(formData, { abortEarly: false });
         // send post request to api with name, password and email id.
-        // redirect to login page
-        console.log("form submitted", formData);
+        const {confirmPassword,...data} = formData
+        axiosInstance
+          .post(`http://127.0.0.1:8000/api/user/register/`, data)
+          .then(function (response) {
+            console.log(response);
+            // response.data
+            // response.status : 201
+            // response.statusText: Created
+            // show message
+            // redirect to login page
+          })
+          .catch(function (error) {
+            console.log(error); // 400 Bad request
+            // user already exists
+          });
       } catch (error) {
         const newErrors = {};
         error.inner.forEach((err) => {
