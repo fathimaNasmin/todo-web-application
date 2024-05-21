@@ -22,6 +22,7 @@
     "react-router-dom": "^6.23.1",
     "react-time-ago": "^7.3.3",
     "shortid": "^2.2.16",
+    "sonner": "^1.4.41",
     "use-local-storage": "^3.0.0",
     "yup": "^1.4.0"
   },
