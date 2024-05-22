@@ -4,10 +4,14 @@
 
 Todo:
 - user logs in/ check token in local storage ->loading UI -> redirect to landing page
-- authtoken -> context hook
+- authtoken -> context hook ✔️
 - if authtoken exists -> landing page
 - signout option.
 
+.......
+authToken -> context : parent ✔️
+isAuthenticated -> context : parent ✔️
+PrivateRoute component
 
 user 1:
 sample test 1 | sampletest1@example.com | Sampletest@1

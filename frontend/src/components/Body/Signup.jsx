@@ -4,6 +4,7 @@ import { object, string, ref } from "yup";
 import axiosInstance from "../../api";
 import { baseUrl, userLoginUrl, userRegisterUrl } from "../../urls";
 import { Toaster, toast } from "sonner";
+import { useAuthContext } from "../Hooks/authContext";
 
 export default function Signup() {
   const [signState, setSignState] = useState(true);
@@ -14,7 +15,8 @@ export default function Signup() {
     password: "",
     confirmPassword: "",
   });
-  const [authToken, setAuthToken] = useState("");
+  // const [authToken, setAuthToken] = useState("");
+  const {isAuthenticated, token, setAuth} = useAuthContext();
 
   // Login Form Validation
   let loginValidationSchema = object({
@@ -109,8 +111,7 @@ export default function Signup() {
               const toastId = toast.loading("Redirecting...", {
                 position: "top-center",
               });
-              localStorage.setItem("authToken", response.data.token);
-              setAuthToken(response.data.token);
+              setAuth(response.data.token)
               setTimeout(() => {
                 toast.dismiss(toastId);
               }, 3000);
