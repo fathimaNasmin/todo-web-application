@@ -1,0 +1,25 @@
+.navContainer{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+.navContainer div{
+    margin: 15px 10px;
+}
+.navContainer .name{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+.signoutIcon button{
+    border: none;
+    background-color: inherit;
+    width: 50px;
+}
+.signoutIcon button:hover{
+    cursor: pointer;
+}
+.signoutIcon button .icon{
+    color: white;
+    
+}

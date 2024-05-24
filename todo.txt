@@ -3,15 +3,14 @@
 
 
 Todo:
-- user logs in/ check token in local storage ->loading UI -> redirect to landing page
-- authtoken -> context hook ✔️
-- if authtoken exists -> landing page
-- signout option.
-
-.......
-authToken -> context : parent ✔️
-isAuthenticated -> context : parent ✔️
-PrivateRoute component
+24th may 2024
+- UI: signout 
+- func: signout option.
+- store currentUser
+- UI: currentUser: name, email & theme
+- store username in local storage and context
+- valid mail id check API
+- dark mode in login/signup page
 
 user 1:
 sample test 1 | sampletest1@example.com | Sampletest@1
