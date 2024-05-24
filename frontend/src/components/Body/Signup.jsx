@@ -110,7 +110,7 @@ export default function Signup() {
           .then(function (response) {
             console.log(response);
             if (response.status === 200) {
-              setAuth(response.data.token, true);
+              setAuth(`Token ${response.data.token}`, true);
               // set current user data
               navigate("/todopage", { replace: true });
             }

@@ -1,22 +1,17 @@
-- dark : login/ signup
 - generate auto strong password
+- valid mail id check API
 
 
 Todo:
-24th may 2024
-- UI: currentUser: name, email & theme
-- valid mail id check API
+25th may 2024
+- get tasks
+- post tasks
+- patch tasks
+- delete tasks
+
 - dark mode in login/signup page
 
 user 1:
 sample test 1 | sampletest1@example.com | Sampletest@1
+Amayrah Meher | amayrah.meher@gmail.com | Amy0711@24
 
-theme:
-- first check the local storage for theme
- - exists: get the from local storage
- - not exists: call get api ->preferred_theme
-
-- set theme
-    - when the button is clicked patch request to api
-    if false : set to light ;
-    if true : set to dark;
