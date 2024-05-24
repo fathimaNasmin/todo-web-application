@@ -5,7 +5,7 @@ import '../../../App.css';
 import { DarkModeContext } from "../../Hooks/useDarkMode";
 import { useContext, useEffect } from "react";
 import axiosInstance from '../../../api';
-import {userInfoUrl} from '../../../urls'
+import {userInfoUrl, taskUrl} from '../../../urls'
 import { AuthContext } from "../../Hooks/authContext";
 
 export default function TodoPage() {
@@ -28,6 +28,18 @@ export default function TodoPage() {
       .catch((error) => {
         console.log(error);
       });
+
+    // GET api
+    axiosInstance
+      .get("http://localhost:8000/api/task/", {
+        headers: {
+          'Authorization': token,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
   },[])
 
   return (
