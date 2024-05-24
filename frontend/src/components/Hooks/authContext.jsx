@@ -5,15 +5,15 @@ export const AuthContext = createContext();
 export const useAuthContext = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
-    console.log(authToken);
-    if (authToken !== null && authToken.length > 0) {
+    // console.log(typeof authToken);
+    if (authToken !== null && authToken !== undefined && authToken.length > 0) {
       setIsAuthenticated(true);
       setToken(authToken);
     }
-    console.log("context: ", isAuthenticated);
   }, []);
 
   // Function to set state and token
@@ -27,7 +27,7 @@ export const useAuthContext = () => {
     setToken(newToken);
   };
 
-  return { isAuthenticated, token, setAuth };
+  return { isAuthenticated, token, setAuth, setCurrentUser, currentUser };
 };
 
 // AuthProvider to wrap around the component tree

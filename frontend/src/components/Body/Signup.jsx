@@ -111,6 +111,7 @@ export default function Signup() {
             console.log(response);
             if (response.status === 200) {
               setAuth(response.data.token, true);
+              // set current user data
               navigate("/todopage", { replace: true });
             }
           })

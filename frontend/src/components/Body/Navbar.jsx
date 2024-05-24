@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
-    const {isAuthenticated, token, setAuth} = useContext(AuthContext);
+    const {isAuthenticated, token, setAuth, currentUser} = useContext(AuthContext);
     const handleSignOut = () =>{
         console.log("signout:", token);
         setAuth(null, false)
     }
   return (
     <div className={styles.navContainer}>
-      <div className={styles.name}>Welcome, User</div>
+      <div className={styles.name}>Welcome, {currentUser?currentUser.name:"user"}</div>
       <div className={styles.signoutIcon}>
         <button onClick={handleSignOut}>
           <FontAwesomeIcon
