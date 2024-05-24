@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import styles from "./signup.module.css";
 import { object, string, ref } from "yup";
 import axiosInstance from "../../api";
 import { baseUrl, userLoginUrl, userRegisterUrl } from "../../urls";
 import { Toaster, toast } from "sonner";
-import { useAuthContext } from "../Hooks/authContext";
+import { AuthContext } from "../Hooks/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [signState, setSignState] = useState(true);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -15,8 +17,7 @@ export default function Signup() {
     password: "",
     confirmPassword: "",
   });
-  // const [authToken, setAuthToken] = useState("");
-  const {isAuthenticated, token, setAuth} = useAuthContext();
+  const { isAuthenticated, setAuth } = useContext(AuthContext);
 
   // Login Form Validation
   let loginValidationSchema = object({
@@ -55,6 +56,7 @@ export default function Signup() {
     setErrors({ ...errors, [name]: undefined });
   };
 
+  // Login/signup on submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -108,15 +110,9 @@ export default function Signup() {
           .then(function (response) {
             console.log(response);
             if (response.status === 200) {
-              const toastId = toast.loading("Redirecting...", {
-                position: "top-center",
-              });
-              setAuth(response.data.token)
-              setTimeout(() => {
-                toast.dismiss(toastId);
-              }, 3000);
+              setAuth(response.data.token, true);
+              navigate("/todopage", { replace: true });
             }
-            // redirect to protected component
           })
           .catch(function (error) {
             console.log(error.response.data["non_field_errors"][0]);
@@ -125,7 +121,7 @@ export default function Signup() {
                 duration: 5000,
                 position: "top-center",
               });
-            }else if(error.response.status === 500){
+            } else if (error.response.status === 500) {
               toast.error(<div>Server Error.Try again later...</div>, {
                 duration: 5000,
                 position: "top-center",

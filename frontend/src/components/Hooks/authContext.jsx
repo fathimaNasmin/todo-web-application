@@ -2,26 +2,18 @@ import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-// auth token -> local storage
-// set isAUthenticated = true
-
 export const useAuthContext = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(null);
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
-    if (authToken !== null || authToken !== undefined) {
-      try {
-        const storedValue = JSON.parse(authToken);
-        if (storedValue) {
-          setIsAuthenticated(true);
-          setToken(storedValue);
-        }
-      } catch (error) {
-        console.log("Failed to parse: ", error);
-      }
+    console.log(authToken);
+    if (authToken !== null && authToken.length > 0) {
+      setIsAuthenticated(true);
+      setToken(authToken);
     }
+    console.log("context: ", isAuthenticated);
   }, []);
 
   // Function to set state and token
@@ -36,4 +28,11 @@ export const useAuthContext = () => {
   };
 
   return { isAuthenticated, token, setAuth };
+};
+
+// AuthProvider to wrap around the component tree
+export const AuthProvider = ({ children }) => {
+  const auth = useAuthContext();
+
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
