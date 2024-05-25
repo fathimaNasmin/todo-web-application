@@ -8,7 +8,7 @@ export const useAuthContext = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
+    const authToken = JSON.parse(localStorage.getItem("authToken"));
     // console.log(typeof authToken);
     if (authToken !== null && authToken !== undefined && authToken.length > 0) {
       setIsAuthenticated(true);
