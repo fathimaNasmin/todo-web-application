@@ -4,25 +4,26 @@ import { faMoon,faSun } from "@fortawesome/free-solid-svg-icons";
 import shortid from "shortid";
 import { useState, useContext } from "react";
 import { DarkModeContext } from "../Hooks/useDarkMode";
+import { TodoContext } from "../Hooks/todoContext";
 
-
-export default function Todo({ todo, setTodo, todoList, setTodoList}) {
+export default function Todo() {
   const [inputError, setInputError] = useState("");
   const {isDark, toggleDarkMode} = useContext(DarkModeContext);
+  const {todo, setTodo, todoList, setTodoList} = useContext(TodoContext)
 
   const validateTodoForm = () => {
-    if (todo.name.length < 3) {
-      setInputError("Task name should have more than 3 characters");
-      return false;
-    }
-    return true;
+    // if (todo.name.length < 3) {
+    //   setInputError("Task name should have more than 3 characters");
+    //   return false;
+    // }
+    // return true;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateTodoForm()) {
       setInputError("");
       setTodoList([...todoList, todo]);
-      setTodo({ id: "", name: "", done: false, createdAt: new Date() });
+      setTodo({ name: ""});
     }
   };
   return (
@@ -54,9 +55,7 @@ export default function Todo({ todo, setTodo, todoList, setTodoList}) {
             setInputError("");
             setTodo({
               ...todo,
-              id: shortid.generate(),
               name: e.target.value,
-              createdAt: new Date(),
             });
           }}
         />

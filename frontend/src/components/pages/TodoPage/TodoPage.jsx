@@ -3,15 +3,18 @@ import Footer from "../../Body/Footer";
 import Navbar from "../../Body/Navbar";
 import "../../../App.css";
 import { DarkModeContext } from "../../Hooks/useDarkMode";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../../api";
 import { userInfoUrl, taskUrl } from "../../../urls";
 import { AuthContext } from "../../Hooks/authContext";
+import { TodoContext } from "../../Hooks/todoContext";
 
 export default function TodoPage() {
   // Use custom context to access value.
   const { isDark } = useContext(DarkModeContext);
   const { token, setCurrentUser } = useContext(AuthContext);
+  const { todo, setTodo, todoList, setTodoList, updateTodoList } =
+    useContext(TodoContext);
 
   useEffect(() => {
     if (token) {
@@ -33,19 +36,21 @@ export default function TodoPage() {
           });
       };
       fetchData();
-    }
 
-    // GET api
-    // axiosInstance
-    //   .get("http://localhost:8000/api/task/", {
-    //     headers: {
-    //       'Authorization': token,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => console.log(error));
+      // GET api
+      axiosInstance
+        .get(taskUrl, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          // console.log(response.data);
+          updateTodoList(response.data);
+          console.log(todoList);
+        })
+        .catch((error) => console.log(error));
+    }
   }, []);
 
   return (

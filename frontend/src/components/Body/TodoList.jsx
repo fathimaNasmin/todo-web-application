@@ -2,25 +2,21 @@ import styles from "./todolist.module.css";
 
 import TodoItem from "./TodoItem";
 import Menu from "./Menu";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { TodoContext } from "../Hooks/todoContext";
 
-export default function TodoList({
-  todoList,
-  setTodoList,
-  filteredTodoList,
-  setFilteredTodoList,
-}) {
-  useEffect(() => {
-    const sortedData = todoList.sort((a, b) => {
-      if (a.done !== b.done) {
-        return a.done - b.done;
-      }
-      return b.createdAt - a.createdAt;
-    });
-    setFilteredTodoList(sortedData);
-  }, [todoList]);
+export default function TodoList() {
+  const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
 
-  
+  // useEffect(() => {
+  //   const sortedData = todoList.sort((a, b) => {
+  //     if (a.done !== b.done) {
+  //       return a.done - b.done;
+  //     }
+  //     return b.createdAt - a.createdAt;
+  //   });
+  //   setFilteredTodoList(sortedData);
+  // }, [todoList]);
 
   return (
     <div className={styles.todoListContainer}>
@@ -29,18 +25,17 @@ export default function TodoList({
         {todoList.length <= 0 ? (
           <h1>No task</h1>
         ) : (
-          filteredTodoList.map((item) => (
+          todoList.map((item) => (
             <TodoItem
               key={item.id}
               item={item}
-              todoList={todoList}
-              setTodoList={setTodoList}
             />
           ))
         )}
       </div>
+
       {/* footer */}
-      <Menu todoList={todoList} setTodoList={setTodoList} setFilteredTodoList={setFilteredTodoList}/>
+      <Menu />
     </div>
   );
 }

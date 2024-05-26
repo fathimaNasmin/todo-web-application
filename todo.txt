@@ -4,10 +4,6 @@
 
 Todo:
 25th may 2024
-- get token on before loading the page from local storage
-- send get request
-- update UI of tasks 
-- get tasks
 - post tasks
 - patch tasks
 - delete tasks
@@ -18,3 +14,18 @@ user 1:
 sample test 1 | sampletest1@example.com | Sampletest@1
 Amayrah Meher | amayrah.meher@gmail.com | Amy0711@24
 
+AXIOS GET CALL
+axiosInstance
+    .get(userInfoUrl, {
+    headers: {
+        Authorization: token,
+    },
+    })
+    .then((response) => {
+    let userInfo = response.data;
+    setCurrentUser(userInfo);
+    console.log(userInfo);
+    })
+    .catch((error) => {
+    console.log(error);
+    });

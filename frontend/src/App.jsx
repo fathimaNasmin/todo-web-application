@@ -10,6 +10,7 @@ import { DarkModeContext, useDarkMode } from "./components/Hooks/useDarkMode";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { AuthProvider } from "./components/Hooks/authContext";
 import AutoRedirect from "./components/AutoRedirect/AutoRedirect";
+import { TodoProvider } from "./components/Hooks/todoContext";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
@@ -20,22 +21,24 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <DarkModeContext.Provider value={{ isDark, toggleDarkMode }}>
-          <BrowserRouter>
-            <AutoRedirect />
-            <Routes>
-              <Route path="/" element={<Signup />} />
-              <Route
-                path="/todopage"
-                element={
-                  <PrivateRoute>
-                    <TodoPage />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </BrowserRouter>
-        </DarkModeContext.Provider>
+        <TodoProvider>
+          <DarkModeContext.Provider value={{ isDark, toggleDarkMode }}>
+            <BrowserRouter>
+              <AutoRedirect />
+              <Routes>
+                <Route path="/" element={<Signup />} />
+                <Route
+                  path="/todopage"
+                  element={
+                    <PrivateRoute>
+                      <TodoPage />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+            </BrowserRouter>
+          </DarkModeContext.Provider>
+        </TodoProvider>
       </AuthProvider>
     </>
   );

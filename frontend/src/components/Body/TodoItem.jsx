@@ -2,17 +2,21 @@ import styles from "./todoitem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ReactTimeAgo from "react-time-ago";
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../Hooks/authContext";
+import axiosInstance from '../../api'
+import { taskUrl } from "../../urls";
 
-export default function TodoItem({
-  item,
-  todoList,
-  setTodoList
-}) {
+export default function TodoItem({ item }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isChecked, setIsChecked] = useState(false); // state for checkbox
   //   useRef hook to get the div's id from DOM
   const parentNodeRef = useRef(null);
+  const {token} = useContext(AuthContext)
+
+  useEffect(()=>{
+    
+  },[])
 
   const handleDelete = (e) => {
     const id = parentNodeRef.current.id;
@@ -72,12 +76,17 @@ export default function TodoItem({
         )}
 
         <p>
-          created <ReactTimeAgo date={item.createdAt} locale="en-US" />
+          created <ReactTimeAgo date={item.created_on} locale="en-US" />
         </p>
       </div>
 
       <button onClick={handleDelete}>
-        <FontAwesomeIcon icon={faTrashCan} size="xs" transform="grow-7" className={styles.trashIcon}/>
+        <FontAwesomeIcon
+          icon={faTrashCan}
+          size="xs"
+          transform="grow-7"
+          className={styles.trashIcon}
+        />
       </button>
     </div>
   );
