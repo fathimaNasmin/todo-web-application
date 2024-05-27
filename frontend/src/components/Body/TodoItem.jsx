@@ -75,9 +75,9 @@ export default function TodoItem({ item }) {
           </label>
         )}
 
-        <p>
+        {/* <p>
           created <ReactTimeAgo date={item.created_on} locale="en-US" />
-        </p>
+        </p> */}
       </div>
 
       <button onClick={handleDelete}>

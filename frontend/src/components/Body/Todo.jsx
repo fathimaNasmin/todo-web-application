@@ -1,29 +1,48 @@
 import styles from "./todo.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon,faSun } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import shortid from "shortid";
 import { useState, useContext } from "react";
 import { DarkModeContext } from "../Hooks/useDarkMode";
 import { TodoContext } from "../Hooks/todoContext";
+import axiosInstance from "../../api";
+import { taskUrl } from "../../urls";
+import { AuthContext } from "../Hooks/authContext";
 
 export default function Todo() {
   const [inputError, setInputError] = useState("");
-  const {isDark, toggleDarkMode} = useContext(DarkModeContext);
-  const {todo, setTodo, todoList, setTodoList} = useContext(TodoContext)
+  const { isDark, toggleDarkMode } = useContext(DarkModeContext);
+  const { todo, setTodo, updateTodoList, addToTodoList } =
+    useContext(TodoContext);
+  const { token } = useContext(AuthContext);
 
   const validateTodoForm = () => {
-    // if (todo.name.length < 3) {
-    //   setInputError("Task name should have more than 3 characters");
-    //   return false;
-    // }
-    // return true;
+    if (todo.name.length < 3) {
+      setInputError("Task name should have more than 3 characters");
+      return false;
+    }
+    return true;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateTodoForm()) {
+      const data = todo;
+      // Call POST on task url
+      axiosInstance
+        .post(taskUrl, data, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          addToTodoList(response.data);
+          setTodo({ name: "" });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       setInputError("");
-      setTodoList([...todoList, todo]);
-      setTodo({ name: ""});
     }
   };
   return (
@@ -54,7 +73,6 @@ export default function Todo() {
           onChange={(e) => {
             setInputError("");
             setTodo({
-              ...todo,
               name: e.target.value,
             });
           }}

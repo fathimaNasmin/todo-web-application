@@ -17,9 +17,23 @@ export const TodoProvider = ({ children }) => {
     setTodoList(trandformedData);
   };
 
+  const addToTodoList = (newData)=>{
+    //object
+    // update set of arrays
+    const {user, ...data} = newData;
+    setTodoList([...todoList, data]);
+  }
+
   return (
     <TodoContext.Provider
-      value={{ todo, setTodo, todoList, setTodoList, updateTodoList }}
+      value={{
+        todo,
+        setTodo,
+        todoList,
+        setTodoList,
+        updateTodoList,
+        addToTodoList,
+      }}
     >
       {children}
     </TodoContext.Provider>

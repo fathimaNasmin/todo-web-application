@@ -5,6 +5,8 @@
 Todo:
 25th may 2024
 - post tasks
+    - error: when post response is object;add that obj to todoList
+    - new function update on post and another function for initial List on useEffect
 - patch tasks
 - delete tasks
 

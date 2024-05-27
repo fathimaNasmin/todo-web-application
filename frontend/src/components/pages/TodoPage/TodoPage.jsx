@@ -36,7 +36,10 @@ export default function TodoPage() {
           });
       };
       fetchData();
+    }
+  }, []);
 
+    useEffect(() => {
       // GET api
       axiosInstance
         .get(taskUrl, {
@@ -47,11 +50,13 @@ export default function TodoPage() {
         .then((response) => {
           // console.log(response.data);
           updateTodoList(response.data);
+
           console.log(todoList);
         })
         .catch((error) => console.log(error));
-    }
-  }, []);
+    }, []);
+
+  
 
   return (
     <>

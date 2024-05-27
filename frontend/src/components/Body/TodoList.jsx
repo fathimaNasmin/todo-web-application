@@ -4,9 +4,14 @@ import TodoItem from "./TodoItem";
 import Menu from "./Menu";
 import { useEffect, useContext } from "react";
 import { TodoContext } from "../Hooks/todoContext";
+import axiosInstance from "../../api";
+import {taskUrl } from "../../urls";
+import { AuthContext } from "../Hooks/authContext";
+
 
 export default function TodoList() {
-  const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
+  const { todoList,updateTodoList  } = useContext(TodoContext);
+   const { token, setCurrentUser } = useContext(AuthContext);
 
   // useEffect(() => {
   //   const sortedData = todoList.sort((a, b) => {
@@ -17,6 +22,7 @@ export default function TodoList() {
   //   });
   //   setFilteredTodoList(sortedData);
   // }, [todoList]);
+
 
   return (
     <div className={styles.todoListContainer}>
