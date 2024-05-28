@@ -4,11 +4,14 @@
 
 Todo:
 25th may 2024
-- post tasks
-    - error: when post response is object;add that obj to todoList
-    - new function update on post and another function for initial List on useEffect
-- patch tasks
+- patch tasks: edit the name; change on done
 - delete tasks
+
+Edit the name of the task:
+- on click make to input field.
+- onKeyDown or onBlur -> send patch request 
+- update todoList
+
 
 - dark mode in login/signup page
 

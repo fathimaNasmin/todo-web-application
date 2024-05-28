@@ -4,7 +4,8 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ReactTimeAgo from "react-time-ago";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Hooks/authContext";
-import axiosInstance from '../../api'
+import { TodoContext } from "../Hooks/todoContext";
+import axiosInstance from "../../api";
 import { taskUrl } from "../../urls";
 
 export default function TodoItem({ item }) {
@@ -12,27 +13,61 @@ export default function TodoItem({ item }) {
   const [isChecked, setIsChecked] = useState(false); // state for checkbox
   //   useRef hook to get the div's id from DOM
   const parentNodeRef = useRef(null);
-  const {token} = useContext(AuthContext)
+  const { token } = useContext(AuthContext);
+  const { todoList, setTodoList } = useContext(TodoContext);
+  const [inputValue, setInputValue] = useState({});
 
-  useEffect(()=>{
-    
-  },[])
+  // API :PATCH request on
+  const sendPatchRequest = (id, value) => {
+    axiosInstance
+      .patch(
+        `${taskUrl}${id}/`,
+        { name: value },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleEditTodo = (e) => {
+    const id = parentNodeRef.current.id;
+    const updatedValue = e.target.value;
+
+    const updatedTodoList = todoList.map((item) => {
+      if (item.id === id) {
+        return { ...item, name: updatedValue };
+      }
+      return item;
+    });
+    setTodoList(updatedTodoList);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setIsEditing(false);
+      const id = parentNodeRef.current.id;
+      const updatedValue = e.target.value;
+      sendPatchRequest(id, updatedValue);
+    }
+  };
+
+  const handleOnBlur = (e) => {
+    setIsEditing(false);
+    const updatedValue = e.target.value;
+    const id = parentNodeRef.current.id;
+    sendPatchRequest(id, updatedValue);
+  };
 
   const handleDelete = (e) => {
     const id = parentNodeRef.current.id;
     const newtodoList = todoList.filter((item) => item.id != id);
     setTodoList(newtodoList);
-  };
-
-  const handleEditTodo = (e) => {
-    const id = parentNodeRef.current.id;
-    const updatedTodoList = todoList.map((item) => {
-      if (item.id === id) {
-        return { ...item, name: e.target.value };
-      }
-      return item;
-    });
-    setTodoList(updatedTodoList);
   };
 
   const handleCheckbox = () => {
@@ -60,10 +95,8 @@ export default function TodoItem({ item }) {
           <input
             value={item.name}
             onChange={handleEditTodo}
-            onKeyDown={(e) => {
-              e.key === "Enter" ? setIsEditing(false) : null;
-            }}
-            onBlur={() => setIsEditing(false)}
+            onKeyDown={handleKeyDown}
+            onBlur={handleOnBlur}
           />
         ) : (
           <label

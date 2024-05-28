@@ -48,10 +48,8 @@ export default function TodoPage() {
           },
         })
         .then((response) => {
-          // console.log(response.data);
+          console.log(response.data);
           updateTodoList(response.data);
-
-          console.log(todoList);
         })
         .catch((error) => console.log(error));
     }, []);
