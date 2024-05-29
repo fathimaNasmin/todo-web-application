@@ -3,9 +3,6 @@
 
 
 Todo:
-25th may 2024
-- delete tasks
-
 
 
 - dark mode in login/signup page

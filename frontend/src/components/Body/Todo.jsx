@@ -8,11 +8,12 @@ import { TodoContext } from "../Hooks/todoContext";
 import axiosInstance from "../../api";
 import { taskUrl } from "../../urls";
 import { AuthContext } from "../Hooks/authContext";
+import { getAllTodos } from "../pages/TodoPage/TodoPage";
 
 export default function Todo() {
   const [inputError, setInputError] = useState("");
   const { isDark, toggleDarkMode } = useContext(DarkModeContext);
-  const { todo, setTodo, updateTodoList, addToTodoList } =
+  const { todo, setTodo, setTodoList } =
     useContext(TodoContext);
   const { token } = useContext(AuthContext);
 
@@ -36,8 +37,8 @@ export default function Todo() {
         })
         .then((response) => {
           console.log(response);
-          addToTodoList(response.data);
           setTodo({ name: "" });
+          getAllTodos(token, setTodoList);
         })
         .catch((error) => {
           console.log(error);

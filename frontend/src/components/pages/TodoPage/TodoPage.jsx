@@ -9,16 +9,31 @@ import { userInfoUrl, taskUrl } from "../../../urls";
 import { AuthContext } from "../../Hooks/authContext";
 import { TodoContext } from "../../Hooks/todoContext";
 
+export const getAllTodos = (token,setTodoList) => {
+  // GET api
+  axiosInstance
+    .get(taskUrl, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+      setTodoList(response.data);
+    })
+    .catch((error) => console.log(error));
+};
+
 export default function TodoPage() {
   // Use custom context to access value.
   const { isDark } = useContext(DarkModeContext);
   const { token, setCurrentUser } = useContext(AuthContext);
-  const { todo, setTodo, todoList, setTodoList, updateTodoList } =
+  const { setTodoList } =
     useContext(TodoContext);
 
   useEffect(() => {
     if (token) {
-      const fetchData = () => {
+      const fetchUserData = () => {
         // api request with token to get user info
         axiosInstance
           .get(userInfoUrl, {
@@ -35,26 +50,13 @@ export default function TodoPage() {
             console.log(error);
           });
       };
-      fetchData();
+      fetchUserData();
     }
   }, []);
 
-    useEffect(() => {
-      // GET api
-      axiosInstance
-        .get(taskUrl, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          updateTodoList(response.data);
-        })
-        .catch((error) => console.log(error));
-    }, []);
-
-  
+  useEffect(() => {
+    getAllTodos(token, setTodoList);
+  }, []);
 
   return (
     <>

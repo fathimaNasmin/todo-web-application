@@ -7,6 +7,7 @@ import { AuthContext } from "../Hooks/authContext";
 import { TodoContext } from "../Hooks/todoContext";
 import axiosInstance from "../../api";
 import { taskUrl } from "../../urls";
+import { getAllTodos } from "../pages/TodoPage/TodoPage";
 
 export default function TodoItem({ item }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,7 +15,7 @@ export default function TodoItem({ item }) {
   //   useRef hook to get the div's id from DOM
   const parentNodeRef = useRef(null);
   const { token } = useContext(AuthContext);
-  const { todoList, setTodoList, updateTodoList } = useContext(TodoContext);
+  const { todoList, setTodoList } = useContext(TodoContext);
   const [inputValue, setInputValue] = useState({});
 
   // API :DELETE -> deletes task
@@ -26,7 +27,7 @@ export default function TodoItem({ item }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        getAllTodos(token, setTodoList);
       })
       .catch((error) => console.log(error));
   };
@@ -41,6 +42,7 @@ export default function TodoItem({ item }) {
       })
       .then((response) => {
         console.log(response.data);
+        getAllTodos(token, setTodoList);
       })
       .catch((error) => console.log(error));
   };
@@ -100,14 +102,12 @@ export default function TodoItem({ item }) {
     const createdDate = new Date(created_on);
     const updatedDate = new Date(updated_on);
     if (createdDate < updatedDate) {
-      // console.log("updated date");
       return {tag:'Updated', date:updated_on};
     } else {
-      // console.log("created date")
       return {tag:'Created', date:created_on};
     }
   };
-  // console.log(latestUpdateTime("2024-05-29T15:41:26.482682Z", "2024-05-29T15:42:23.753319Z"));
+
   return (
     <div id={item.id} className={styles.todoItem} ref={parentNodeRef}>
       <input

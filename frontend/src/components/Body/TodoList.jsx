@@ -9,7 +9,7 @@ import { taskUrl } from "../../urls";
 import { AuthContext } from "../Hooks/authContext";
 
 export default function TodoList() {
-  const { todoList, updateTodoList } = useContext(TodoContext);
+  const { todoList } = useContext(TodoContext);
   const { token, setCurrentUser } = useContext(AuthContext);
   const [filteredTodoList, setFilteredTodoList] = useState([]);
 
