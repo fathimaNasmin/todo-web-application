@@ -14,21 +14,19 @@ export default function TodoItem({ item }) {
   //   useRef hook to get the div's id from DOM
   const parentNodeRef = useRef(null);
   const { token } = useContext(AuthContext);
-  const { todoList, setTodoList } = useContext(TodoContext);
+  const { todoList, setTodoList, updateTodoList } = useContext(TodoContext);
   const [inputValue, setInputValue] = useState({});
 
-  // API :PATCH request on
-  const sendPatchRequest = (id, value) => {
+
+
+  // API :PATCH request on edit
+  const sendPatchRequest = (id, valueObj) => {
     axiosInstance
-      .patch(
-        `${taskUrl}${id}/`,
-        { name: value },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      )
+      .patch(`${taskUrl}${id}/`, valueObj, {
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((response) => {
         console.log(response.data);
       })
@@ -53,7 +51,7 @@ export default function TodoItem({ item }) {
       setIsEditing(false);
       const id = parentNodeRef.current.id;
       const updatedValue = e.target.value;
-      sendPatchRequest(id, updatedValue);
+      sendPatchRequest(id, { name: updatedValue });
     }
   };
 
@@ -61,7 +59,7 @@ export default function TodoItem({ item }) {
     setIsEditing(false);
     const updatedValue = e.target.value;
     const id = parentNodeRef.current.id;
-    sendPatchRequest(id, updatedValue);
+    sendPatchRequest(id, { name: updatedValue });
   };
 
   const handleDelete = (e) => {
@@ -71,15 +69,18 @@ export default function TodoItem({ item }) {
   };
 
   const handleCheckbox = () => {
+    let doneStatus;
     const id = parentNodeRef.current.id;
     const updatedTodoList = todoList.map((item) => {
       if (item.id === id) {
-        return { ...item, done: !item.done };
+        doneStatus = item.done;
+        return { ...item, done: !doneStatus };
       }
       return item;
     });
     setTodoList(updatedTodoList);
     setIsChecked(!isChecked);
+    sendPatchRequest(id, { done: !doneStatus });
   };
 
   return (
