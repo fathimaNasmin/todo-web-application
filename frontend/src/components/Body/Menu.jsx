@@ -1,36 +1,57 @@
 import { useState, useContext } from "react";
 import styles from "./menu.module.css";
 import { TodoContext } from "../Hooks/todoContext";
+import axiosInstance from "../../api";
+import { taskUrl } from "../../urls";
+import axios from "axios";
+import { AuthContext } from "../Hooks/authContext";
 
-export default function Menu() {
+export default function Menu({ filteredTodoList, setFilteredTodoList }) {
   const [selectedMenu, setSelectedMenu] = useState("All");
-  const {todo, setTodo, todoList, setTodoList} = useContext(TodoContext);
+  const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
+  const {token} = useContext(AuthContext);
 
-  // const handleMenu = (current) => {
-  //   setSelectedMenu(current);
-  //   switch (current) {
-  //     case "All":
-  //       setFilteredTodoList(todoList);
-  //       break;
-  //     case "Active":
-  //       let activeItems = todoList.filter((item) => item.done === false);
-  //       setFilteredTodoList(activeItems);
-  //       break;
-  //     case "Completed":
-  //       let completedItems = todoList.filter((item) => item.done === true);
-  //       setFilteredTodoList(completedItems);
-  //       break;
-  //     case "Clear all":
-  //       setTodoList([]);
-  //       setFilteredTodoList([]);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
+
+  const deleteAllTasks = () => {
+    todoList.map((item) => {
+      axiosInstance
+        .delete(`${taskUrl}${item.id}/`, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => console.log("Deleted all"))
+        .catch((error) => console.log(error));
+    });
+  };
+
+  const handleMenu = (current) => {
+    setSelectedMenu(current);
+    switch (current) {
+      case "All":
+        setFilteredTodoList(todoList);
+        break;
+      case "Active":
+        let activeItems = todoList.filter((item) => item.done === false);
+        setFilteredTodoList(activeItems);
+        break;
+      case "Completed":
+        let completedItems = todoList.filter((item) => item.done === true);
+        setFilteredTodoList(completedItems);
+        break;
+      case "Clear all":
+        deleteAllTasks(todoList);
+        setTodoList([]);
+        setFilteredTodoList([]);
+        break;
+      default:
+        break;
+    }
+  };
 
   // function to determine menu selected or not.
-  const isItemSelected = (menuItem)=> menuItem === selectedMenu?styles.selectedMenu:"";
+  const isItemSelected = (menuItem) =>
+    menuItem === selectedMenu ? styles.selectedMenu : "";
 
   return (
     <div className={styles.menuItems}>
