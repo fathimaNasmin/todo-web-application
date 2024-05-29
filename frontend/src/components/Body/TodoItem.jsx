@@ -17,9 +17,8 @@ export default function TodoItem({ item }) {
   const { todoList, setTodoList, updateTodoList } = useContext(TodoContext);
   const [inputValue, setInputValue] = useState({});
 
-
-  // API :DELETE -> deletes task 
-  const sendDeleteRequest = (id) =>{
+  // API :DELETE -> deletes task
+  const sendDeleteRequest = (id) => {
     axiosInstance
       .delete(`${taskUrl}${id}/`, {
         headers: {
@@ -30,7 +29,7 @@ export default function TodoItem({ item }) {
         console.log(response.data);
       })
       .catch((error) => console.log(error));
-  }
+  };
 
   // API :PATCH request on edit
   const sendPatchRequest = (id, valueObj) => {
@@ -97,6 +96,18 @@ export default function TodoItem({ item }) {
     sendPatchRequest(id, { done: !doneStatus });
   };
 
+  const latestUpdateTime = (created_on, updated_on) => {
+    const createdDate = new Date(created_on);
+    const updatedDate = new Date(updated_on);
+    if (createdDate < updatedDate) {
+      // console.log("updated date");
+      return {tag:'Updated', date:updated_on};
+    } else {
+      // console.log("created date")
+      return {tag:'Created', date:created_on};
+    }
+  };
+  // console.log(latestUpdateTime("2024-05-29T15:41:26.482682Z", "2024-05-29T15:42:23.753319Z"));
   return (
     <div id={item.id} className={styles.todoItem} ref={parentNodeRef}>
       <input
@@ -123,9 +134,13 @@ export default function TodoItem({ item }) {
           </label>
         )}
 
-        {/* <p>
-          created <ReactTimeAgo date={item.created_on} locale="en-US" />
-        </p> */}
+        <p>
+          {latestUpdateTime(item.created_on, item.updated_on).tag}{'  '}
+          <ReactTimeAgo
+            date={latestUpdateTime(item.created_on, item.updated_on).date}
+            locale="en-US"
+          />
+        </p>
       </div>
 
       <button onClick={handleDelete}>
