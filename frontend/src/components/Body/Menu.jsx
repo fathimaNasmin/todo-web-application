@@ -9,8 +9,7 @@ import { AuthContext } from "../Hooks/authContext";
 export default function Menu({ filteredTodoList, setFilteredTodoList }) {
   const [selectedMenu, setSelectedMenu] = useState("All");
   const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
-  const {token} = useContext(AuthContext);
-
+  const { token } = useContext(AuthContext);
 
   const deleteAllTasks = () => {
     todoList.map((item) => {
@@ -20,7 +19,11 @@ export default function Menu({ filteredTodoList, setFilteredTodoList }) {
             Authorization: token,
           },
         })
-        .then((response) => console.log("Deleted all"))
+        .then((response) => {
+          console.log("Deleted all");
+          setTodoList([]);
+          setFilteredTodoList([]);
+        })
         .catch((error) => console.log(error));
     });
   };
@@ -41,8 +44,7 @@ export default function Menu({ filteredTodoList, setFilteredTodoList }) {
         break;
       case "Clear all":
         deleteAllTasks(todoList);
-        setTodoList([]);
-        setFilteredTodoList([]);
+
         break;
       default:
         break;

@@ -18,7 +18,10 @@ export default function TodoList() {
       if (a.done !== b.done) {
         return a.done - b.done;
       }
-      return b.createdAt - a.createdAt;
+      if(b.updated_on !== a.updated_on){
+        return new Date(b.updated_on) - new Date(a.updated_on)
+      }
+      return new Date(b.created_on) - new Date(a.created_on);
     });
     setFilteredTodoList(sortedData);
   }, [todoList]);
