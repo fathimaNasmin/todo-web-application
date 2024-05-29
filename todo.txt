@@ -4,13 +4,8 @@
 
 Todo:
 25th may 2024
-- patch tasks: edit the name; change on done
 - delete tasks
 
-Edit the name of the task:
-- on click make to input field.
-- onKeyDown or onBlur -> send patch request 
-- update todoList
 
 
 - dark mode in login/signup page

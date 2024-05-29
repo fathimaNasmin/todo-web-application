@@ -18,6 +18,19 @@ export default function TodoItem({ item }) {
   const [inputValue, setInputValue] = useState({});
 
 
+  // API :DELETE -> deletes task 
+  const sendDeleteRequest = (id) =>{
+    axiosInstance
+      .delete(`${taskUrl}${id}/`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error));
+  }
 
   // API :PATCH request on edit
   const sendPatchRequest = (id, valueObj) => {
@@ -66,6 +79,7 @@ export default function TodoItem({ item }) {
     const id = parentNodeRef.current.id;
     const newtodoList = todoList.filter((item) => item.id != id);
     setTodoList(newtodoList);
+    sendDeleteRequest(id);
   };
 
   const handleCheckbox = () => {
