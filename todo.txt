@@ -8,8 +8,8 @@ Todo:
 - dark mode in login/signup page
 
 user 1:
-sample test 1 | sampletest1@example.com | Sampletest@1
-Amayrah Meher | amayrah.meher@gmail.com | Amy0711@24
+Nasmin | fathima.nasmin@icloud.com | Legacy0711@
+
 
 AXIOS GET CALL
 axiosInstance
