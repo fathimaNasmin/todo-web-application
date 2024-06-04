@@ -41,7 +41,6 @@ export default function TodoItem({ item }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
         getAllTodos(token, setTodoList);
       })
       .catch((error) => console.log(error));

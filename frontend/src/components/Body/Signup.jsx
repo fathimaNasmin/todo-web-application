@@ -68,7 +68,6 @@ export default function Signup() {
         axiosInstance
           .post(userRegisterUrl, data)
           .then(function (response) {
-            console.log(response);
             // show message
             if (response.status === 201) {
               toast.success(<div>Account Created successfully</div>, {
@@ -108,7 +107,6 @@ export default function Signup() {
         axiosInstance
           .post(userLoginUrl, formData)
           .then(function (response) {
-            console.log(response);
             if (response.status === 200) {
               setAuth(`Token ${response.data.token}`, true);
               // set current user data
@@ -135,8 +133,6 @@ export default function Signup() {
               confirmPassword: "",
             });
           });
-        // redirect to login page
-        console.log("form submitted", formData);
       } catch (error) {
         const newErrors = {};
         error.inner.forEach((err) => {

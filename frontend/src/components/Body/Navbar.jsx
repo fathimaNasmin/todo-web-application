@@ -7,7 +7,6 @@ import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 export default function Navbar() {
     const {isAuthenticated, token, setAuth, currentUser} = useContext(AuthContext);
     const handleSignOut = () =>{
-        console.log("signout:", token);
         setAuth(null, false)
     }
   return (

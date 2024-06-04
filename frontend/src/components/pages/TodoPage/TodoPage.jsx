@@ -18,7 +18,6 @@ export const getAllTodos = (token,setTodoList) => {
       },
     })
     .then((response) => {
-      console.log(response.data);
       setTodoList(response.data);
     })
     .catch((error) => console.log(error));
@@ -44,7 +43,6 @@ export default function TodoPage() {
           .then((response) => {
             let userInfo = response.data;
             setCurrentUser(userInfo);
-            console.log(userInfo);
           })
           .catch((error) => {
             console.log(error);

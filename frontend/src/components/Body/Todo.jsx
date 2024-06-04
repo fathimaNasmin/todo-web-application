@@ -36,7 +36,6 @@ export default function Todo() {
           },
         })
         .then((response) => {
-          console.log(response);
           setTodo({ name: "" });
           getAllTodos(token, setTodoList);
         })

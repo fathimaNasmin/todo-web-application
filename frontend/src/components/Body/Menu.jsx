@@ -20,7 +20,6 @@ export default function Menu({ filteredTodoList, setFilteredTodoList }) {
           },
         })
         .then((response) => {
-          console.log("Deleted all");
           setTodoList([]);
           setFilteredTodoList([]);
         })
